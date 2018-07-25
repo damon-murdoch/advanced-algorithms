@@ -4,7 +4,9 @@ import sys
 
 
 def find_optimal_search_tree(values,weights):
+
     T = np.zeros([len(values),len(values)])
+    R = np.zeros([len(values),len(values)])
 
     for i in range(0,len(T)):
         T[i][i]=weights[i]
@@ -30,7 +32,9 @@ def find_optimal_search_tree(values,weights):
 
                 if val < T[i][j]:
                     T[i][j] = val
-    return T[0][len(values)-1]
+                    R[i][j] = k
+
+    return T[0][len(values)-1],R
 
 def get_sum(freq,i,j):
 
@@ -46,4 +50,7 @@ if __name__ == '__main__':
     values = [10,12,20]
     weights = [34,8,50]
 
-    print(find_optimal_search_tree(values,weights))
+    T,R = find_optimal_search_tree(values,weights)
+
+    print(T)
+    print(R)
